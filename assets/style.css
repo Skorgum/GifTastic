@@ -1,0 +1,8 @@
+body {
+    background-color: gray
+}
+.btn-outline-danger {
+    padding: 3px 10px 10px 3px;
+    margin-top: 5px;
+    margin-right: 2px;
+}
