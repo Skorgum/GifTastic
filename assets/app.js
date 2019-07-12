@@ -11,11 +11,11 @@ var gifQueries = [
 for (var i = 0; i < gifQueries.length; i++) {
     // why does only ` work as the html wrapper here, why won't single or double quotes work?
     // why am I restricted to a continuous string without spaces for the button class?  btn btn-outline-danger causes issues with the onclick event
-    $("#queryButtons").append(`<button class= "btn-outline-danger" data-attr= ${gifQueries[i]}>${gifQueries[i]} </button>`);
+    $("#queryButtons").append(`<button class= "btn btn-outline-danger" data-attr= ${gifQueries[i]}>${gifQueries[i]} </button>`);
 };
 
 // why is the class needed for the onclick event here?  The event does not register without it.
-$("#queryButtons").on("click", ".btn-outline-danger", function(event) {
+$("#queryButtons").on("click", ".btn-outline-danger", function (event) {
     event.preventDefault();
     var queryText = $(this).attr("data-attr");
     console.log(queryText);
@@ -24,7 +24,7 @@ $("#queryButtons").on("click", ".btn-outline-danger", function(event) {
     $.ajax({
         url: queryURL,
         method: "GET",
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
         var data = response.data;
         for (var i = 0; i < response.data.length; i++) {
@@ -34,7 +34,7 @@ $("#queryButtons").on("click", ".btn-outline-danger", function(event) {
 });
 
 // submit button onclick event
-$("#submit").on("click", function(event) {
+$("#submit").on("click", function (event) {
     event.preventDefault();
     var query = $("#gifQuery").val().trim();
     console.log(query);
@@ -44,3 +44,15 @@ $("#submit").on("click", function(event) {
 })
 
 // query results onclick event to start/stop animation
+$(document).on("click", ".gifimages", function () {
+    console.log("HIT")
+    var state = $(this).attr("data-state");
+    console.log(state);
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+})
