@@ -15,7 +15,7 @@ for (var i = 0; i < gifQueries.length; i++) {
 };
 
 // why is the class needed for the onclick event here?  The event does not register without it.
-$("#queryButtons").on("click", ".btn-outline-danger", function(event) {
+$("#queryButtons").on("click", ".btn-outline-danger", function (event) {
     event.preventDefault();
     var queryText = $(this).attr("data-attr");
     console.log(queryText);
@@ -24,7 +24,7 @@ $("#queryButtons").on("click", ".btn-outline-danger", function(event) {
     $.ajax({
         url: queryURL,
         method: "GET",
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
         var data = response.data;
         for (var i = 0; i < response.data.length; i++) {
@@ -34,7 +34,7 @@ $("#queryButtons").on("click", ".btn-outline-danger", function(event) {
 });
 
 // submit button onclick event
-$("#submit").on("click", function(event) {
+$("#submit").on("click", function (event) {
     event.preventDefault();
     var query = $("#gifQuery").val().trim();
     console.log(query);
@@ -44,3 +44,15 @@ $("#submit").on("click", function(event) {
 })
 
 // query results onclick event to start/stop animation
+$(document).on("click", ".gifimages", function () {
+    console.log("HIT")
+    var state = $(this).attr("data-state");
+    console.log(state);
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+})
