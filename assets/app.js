@@ -11,7 +11,7 @@ var gifQueries = [
 for (var i = 0; i < gifQueries.length; i++) {
     // why does only ` work as the html wrapper here, why won't single or double quotes work?
     // why am I restricted to a continuous string without spaces for the button class?  btn btn-outline-danger causes issues with the onclick event
-    $("#queryButtons").append(`<button class= "btn-outline-danger" data-attr= ${gifQueries[i]}>${gifQueries[i]} </button>`);
+    $("#queryButtons").append(`<button class= "btn btn-outline-danger" data-attr= ${gifQueries[i]}>${gifQueries[i]} </button>`);
 };
 
 // why is the class needed for the onclick event here?  The event does not register without it.
@@ -40,7 +40,7 @@ $("#submit").on("click", function(event) {
     console.log(query);
     gifQueries.push(query);
     console.log(gifQueries);
-    $("#queryButtons").append(`<button class= "btn-outline-danger"  data-attr= ${query}>${query}</button>`)
+    $("#queryButtons").append(`<button class= "btn btn-outline-danger"  data-attr= ${query}>${query}</button>`)
 })
 
 // query results onclick event to start/stop animation
